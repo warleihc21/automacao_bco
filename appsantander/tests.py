@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import pyautogui
+from anticaptchaofficial.recaptchav2proxyless import *
+
 
 servico = Service(ChromeDriverManager().install())
 navegador = webdriver.Chrome(service=servico)
@@ -48,17 +50,50 @@ sleep(10)
 
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("Iago Tomás Fábio Gonçalves")
+pyautogui.typewrite("Yuri Enzo Lopes")
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("721.869.968-55")
+pyautogui.typewrite("069.080.360-57")
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("(16) 99209-8400")
+pyautogui.typewrite("(81) 98820-2695")
 sleep(1)
 pyautogui.press('enter')
+sleep(5)
+navegador.find_element('xpath', '//*[@id="scroll"]/div[2]/div/button').click()
+sleep(10)
+pyautogui.press('TAB')
+sleep(1)
+pyautogui.press('TAB')
+sleep(1)
+pyautogui.typewrite("sebastiaoisaaccavalcanti@raya3.com.br")
+sleep(1)
+navegador.find_element('xpath', '/html/body/fve-root/fve-logged-area/main/fve-mfe-recommendation-element/fve-notification/fveui-form-navigation/footer/button[2]').click()
+sleep(10)
+
+chave_captcha = navegador.find_element(By.ID, 'recaptcha-demo').get_attribute('data-sitekey')
+
+solver = recaptchaV2Proxyless()
+solver.set_verbose(1)
+solver.set_key('cf9a5e8bd1c48e29eaa7d6c406161789')
+solver.set_website_url("https://www.parceirosantander.com.br/")
+solver.set_website_key(chave_captcha)
+
+resposta = solver.solve_and_return_solution()
+
+if resposta != 0:
+    print(resposta)
+    # preencher o campo do token do captcha
+    # g-recaptcha-response
+    navegador.execute_script(f"document.getElementById('g-recaptcha-response').innerHTML = '{resposta}'")
+    navegador.find_element('xpath', '/html/body/fve-root/fve-logged-area/main/fve-mfe-recommendation-element/fve-confirmation/fveui-form-navigation/footer/button[2]').click()
+else:
+    print(solver.err_string)
+
+time.sleep(100)
+
 
 
 sleep(20)
