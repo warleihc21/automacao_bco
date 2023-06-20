@@ -16,7 +16,7 @@ servico = Service(ChromeDriverManager().install())
 navegador = webdriver.Chrome(service=servico)
 
 navegador.get('https://www.parceirosantander.com.br/')
-
+sleep(5)
 navegador.find_element('xpath', '/html/body/fve-root/fve-access-area/main/section/fve-login/form/div[2]/div/button').click()
 sleep(3)
 
@@ -50,15 +50,15 @@ sleep(10)
 
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("Yuri Enzo Lopes")
+pyautogui.typewrite("Benedito Anthony Viana")
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("069.080.360-57")
+pyautogui.typewrite("072.290.928-41")
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("(81) 98820-2695")
+pyautogui.typewrite("31996955552")
 sleep(1)
 pyautogui.press('enter')
 sleep(5)
@@ -68,18 +68,17 @@ pyautogui.press('TAB')
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("sebastiaoisaaccavalcanti@raya3.com.br")
+pyautogui.typewrite("benedito-viana74@oerlikon.com")
 sleep(1)
 navegador.find_element('xpath', '/html/body/fve-root/fve-logged-area/main/fve-mfe-recommendation-element/fve-notification/fveui-form-navigation/footer/button[2]').click()
 sleep(10)
 
-chave_captcha = navegador.find_element(By.ID, 'recaptcha-demo').get_attribute('data-sitekey')
 
 solver = recaptchaV2Proxyless()
 solver.set_verbose(1)
 solver.set_key('cf9a5e8bd1c48e29eaa7d6c406161789')
-solver.set_website_url("https://www.parceirosantander.com.br/")
-solver.set_website_key(chave_captcha)
+solver.set_website_url("https://www.parceirosantander.com.br/spa-base/logged-area/recommendation/confirmation")
+solver.set_website_key('6LdyED0UAAAAAA7dlfCxE0zEMtpnq9u5mw1Wpx-a')
 
 resposta = solver.solve_and_return_solution()
 
@@ -97,7 +96,6 @@ time.sleep(100)
 
 
 sleep(20)
-
 
 
 
