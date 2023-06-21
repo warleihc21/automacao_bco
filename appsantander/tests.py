@@ -39,26 +39,27 @@ pyautogui.typewrite("Cfp@2023")
 sleep(1)
 pyautogui.press('enter')
 
-sleep(20)
+sleep(10)
 
 # Retornar à guia original
 navegador.switch_to.window(guia_original)
+sleep(2)
 
 
 navegador.find_element('xpath', '/html/body/fve-root/fve-logged-area/main/fve-mfe-home-element/fve-products/div/div/dss-product-card[1]/div/div/dss-product-card-content/button').click()
-sleep(10)
+sleep(5)
 
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("Benedito Anthony Viana")
+pyautogui.typewrite("Elisa Adriana Souza")
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("072.290.928-41")
+pyautogui.typewrite("111.068.647-19")
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("31996955552")
+pyautogui.typewrite("95994813458")
 sleep(1)
 pyautogui.press('enter')
 sleep(5)
@@ -68,10 +69,11 @@ pyautogui.press('TAB')
 sleep(1)
 pyautogui.press('TAB')
 sleep(1)
-pyautogui.typewrite("benedito-viana74@oerlikon.com")
+pyautogui.typewrite("elisa-souza76@torrez.com.br")
 sleep(1)
 navegador.find_element('xpath', '/html/body/fve-root/fve-logged-area/main/fve-mfe-recommendation-element/fve-notification/fveui-form-navigation/footer/button[2]').click()
 sleep(10)
+
 
 
 solver = recaptchaV2Proxyless()
@@ -87,6 +89,13 @@ if resposta != 0:
     # preencher o campo do token do captcha
     # g-recaptcha-response
     navegador.execute_script(f"document.getElementById('g-recaptcha-response').innerHTML = '{resposta}'")
+    sleep(5)
+
+    # Habilitar o botão "Enviar Indicação"
+    navegador.execute_script("document.querySelector('button.dss-button--primary').removeAttribute('disabled')")
+    sleep(5)
+
+    # Clicar no botão "Enviar Indicação"    
     navegador.find_element('xpath', '/html/body/fve-root/fve-logged-area/main/fve-mfe-recommendation-element/fve-confirmation/fveui-form-navigation/footer/button[2]').click()
 else:
     print(solver.err_string)
